@@ -6,8 +6,8 @@ while(capImg.isOpened()):
     if frame is None:
         break
     hsv_img = cv2.cvtColor( frame, cv2.COLOR_BGR2HSV )
-    hsv_min = np.array((0, 0, 0), np.uint8)
-    hsv_max = np.array((180, 255, 245), np.uint8)
+    hsv_min = np.array((38, 28, 113), np.uint8)
+    hsv_max = np.array((61, 153, 175), np.uint8)
     hsv_msk = cv2.inRange( hsv_img, hsv_min, hsv_max )
     contours, hierarchy = cv2.findContours( hsv_msk, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     for icontour in contours:
