@@ -9,7 +9,7 @@ cv2.createTrackbar('v1', 'Set', 0, 255, nothing)
 cv2.createTrackbar('h2', 'Set', 180, 180, nothing)
 cv2.createTrackbar('s2', 'Set', 255, 255, nothing)
 cv2.createTrackbar('v2', 'Set', 255, 255, nothing)
-fileName = 'rec_img1.jpg'
+fileName = 'Cross_right.jpg'
 image = cv2.imread(fileName)
 while True:
     frame_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV )
