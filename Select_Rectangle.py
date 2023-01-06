@@ -27,7 +27,6 @@ for icontour in contours:
             green_rect += 1
         else: green_rect += 2
 cv2.putText(image, str(cross_way[green_rect]), (30, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-# "%d" % (green_rect)
 cv2.imshow('hsv', hsv_msk)
 cv2.imshow('contours', image)
 cv2.waitKey()
