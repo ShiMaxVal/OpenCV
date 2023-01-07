@@ -17,12 +17,13 @@ contours, hierarchy = cv2.findContours( hsv_msk, cv2.RETR_LIST, cv2.CHAIN_APPROX
 for icontour in contours:
     rect = cv2.minAreaRect(icontour)
     area = int(rect[1][0] * rect[1][1])
-    if area > 5000:
+    if area > 50000:
         box = cv2.boxPoints(rect)
         box = np.int0(box)
         cv2.drawContours(image, [box], -1, (255, 0, 0), 3)
         center = (int(rect[0][0]), int(rect[0][1]))
         cv2.putText(image, "%d, %d" % (center[0], center[1]), (center[0]-30, center[1]), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+        cv2.putText(image, "%d" % (area), (center[0] - 30, center[1]-50), cv2.FONT_HERSHEY_SIMPLEX, 1,(0, 0, 255), 1)
         if center[0] < 400:
             green_rect += 1
         else: green_rect += 2
