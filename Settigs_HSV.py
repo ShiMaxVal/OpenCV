@@ -32,6 +32,7 @@ while(capImg.isOpened()):
         if key_press == ord('n'):
             break
         elif key_press == ord('q'):
+            # нужно сделать сохранение настроек в файл
             cl_pr = True
             break
     if cl_pr:
