@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+fil = open('settings_HSV.txt','r')  # открыть файл из рабочей директории в режиме чтения
 green_rect = 0
 cross_way =[{}]*5
 cross_way[0] = {"Forward"}
@@ -8,15 +9,18 @@ cross_way[2] = {"Right"}
 cross_way[3] = {"Backward"}
 cross_way[4] = {"Error"}
 capImg = cv2.VideoCapture(0)
+# нужно сделать чтение настроек из файла
+str1 = fil.readline().split()
+h1, s1, v1, h2, s2, v2 = [int(i) for i in str1]
+print (h1, s1, v1, h2, s2, v2)
 while(capImg.isOpened()):
     green_rect = 0
     ret, frame = capImg.read()
     if frame is None:
         break
     hsv_img = cv2.cvtColor( frame, cv2.COLOR_BGR2HSV )
-    # нужно сделать чтение настроек из файла
-    hsv_min = np.array((26, 95, 83), np.uint8)
-    hsv_max = np.array((72, 229, 213), np.uint8)
+    hsv_min = np.array((h1, s1, v1), np.uint8)
+    hsv_max = np.array((h2, s2, v2), np.uint8)
     hsv_msk = cv2.inRange( hsv_img, hsv_min, hsv_max )
     contours, hierarchy = cv2.findContours( hsv_msk, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     for icontour in contours:
@@ -39,5 +43,6 @@ while(capImg.isOpened()):
     key_press = cv2.waitKey(30)
     if key_press == ord('q'):
         break
+fil.close()
 capImg.release()
 cv2.destroyAllWindows()

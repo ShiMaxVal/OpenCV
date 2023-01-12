@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 def nothing(*arg):
  pass
+fil = open('settings_HSV.txt','w')  # открыть файл из рабочей директории в режиме чтения
 cv2.namedWindow('Set')
 cv2.createTrackbar('h1', 'Set', 0, 180, nothing)
 cv2.createTrackbar('s1', 'Set', 0, 255, nothing)
@@ -33,6 +34,13 @@ while(capImg.isOpened()):
             break
         elif key_press == ord('q'):
             # нужно сделать сохранение настроек в файл
+            fil.write(str(h1) + ' ')
+            fil.write(str(s1) + ' ')
+            fil.write(str(v1) + ' ')
+            fil.write(str(h2) + ' ')
+            fil.write(str(s2) + ' ')
+            fil.write(str(v2))
+            fil.close()
             cl_pr = True
             break
     if cl_pr:
